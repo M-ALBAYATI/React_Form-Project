@@ -1,28 +1,30 @@
 import React from "react";
 import { useFormik } from "formik";
 import { basicSchema } from "../schemas";
+import { Link } from "react-router-dom";
 
 function GeneralForm() {
-  const onSubmit = async (values,actions) => {
+  const onSubmit = async (values, actions) => {
     console.log(values);
     console.log(actions);
 
-    await new Promise((resolve)=>{
-        setTimeout(resolve,1000);
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1000);
     });
     actions.resetForm();
   };
 
-  const { values, errors,isSubmitting, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      email: "",
-      age: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: basicSchema,
-    onSubmit,
-  });
+  const { values, errors, isSubmitting, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        age: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: basicSchema,
+      onSubmit,
+    });
   return (
     <form onSubmit={handleSubmit}>
       <div className="inputDiv">
@@ -75,7 +77,13 @@ function GeneralForm() {
           <p className="error">{errors.confirmPassword}</p>
         )}
       </div>
-      <button disabled={isSubmitting} type="sum-bmit">Kaydet</button>
+      <button disabled={isSubmitting} type="sum-bmit">
+        Kaydet
+      </button>
+
+      <Link className="formLink" to={"/portal"}>
+        Portala Git
+      </Link>
     </form>
   );
 }
